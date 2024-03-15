@@ -9,13 +9,15 @@ import java.io.IOException;
 public class App extends JFrame {
     //Declaring a JTextArea
     private JTextArea textArea;
+    private JButton loadButton;
+    private JScrollPane scrollPane;
 
 
 //App Class Constructor.
     public App() {
         // JFrame settings
         //Setting Title
-        setTitle("Your Name's CSV Loader Application");
+        setTitle("Manav's CSV Loader Application");
         //Setting Dimensions of Window
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +31,24 @@ public class App extends JFrame {
          * 5-Add an action listener to the button that calls the load CSV function (below)
          * 6-Play around with coloring and styling to make your application look more professional
          */
-        
+
+        loadButton= new JButton("LoadCSV");
+
+        textArea = new JTextArea();
+        textArea.setEditable(false); // textArea= uneditable
+
+        scrollPane = new JScrollPane(textArea);
+
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadCsv("D:\\Trent\\Winter 2024\\COIS-2240H-A-W01-2024WI-OSH Software Design & Modelling\\Lab3\\COIS2240Lab3\\email-password-recovery-code.csv");
+            }
+        });
+
+        scrollPane.setPreferredSize(new Dimension(400, 400));
+        textArea.setBackground( Color.CYAN);
+
 
         add(loadButton, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
@@ -45,7 +64,7 @@ public class App extends JFrame {
             textArea.setText(content.toString());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Failed to load the CSV file.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        } 
     }
 
     public static void main(String[] args) {
