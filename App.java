@@ -15,21 +15,38 @@ public class App extends JFrame {
     public App() {
         // JFrame settings
         //Setting Title
-        setTitle("Your Name's CSV Loader Application");
+        setTitle("Dev N. Patel's CSV Loader Application");
         //Setting Dimensions of Window
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        /*
-         * 1-Create a a new button named loadButton. The text in the Button should say LoadCSV
-         * 2-After that initialize a new TextArea (we already declared a textArea on Line 11), this is the area where we will display our CSV.
-         * 3-Set the new textAtrea to be uneditable (e.g., .setEditable(false))
-         * 4-Create a JScrollPane within the text area, so that we can scroll up and down.
-         * 5-Add an action listener to the button that calls the load CSV function (below)
-         * 6-Play around with coloring and styling to make your application look more professional
-         */
+        // 1-Create a a new button named loadButton. The text in the Button should say LoadCSV
+        JButton loadButton = new JButton("LoadCSV");
+
+        // 2-After that initialize a new TextArea (we already declared a textArea on Line 11), this is the area where we will display our CSV.
+        textArea = new JTextArea();
         
+        // 3-Set the new textAtrea to be uneditable (e.g., .setEditable(false))
+        textArea.setEditable(false);
+        
+        // 4-Create a JScrollPane within the text area, so that we can scroll up and down.
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        
+        // 5-Add an action listener to the button that calls the load CSV function (below)
+        loadButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadCsv("C:\\Users\\d0219\\OneDrive\\Documents\\Dev\\Study\\Trent U\\COIS-2240\\Labs\\Lab 3\\COIS2240Lab3\\banks.csv");
+            }
+        });
+        
+        // 6-Play around with coloring and styling to make your application look more professional
+        loadButton.setBackground(new Color(144, 238, 144));     // Set the bcakground color of the loadButton
+        loadButton.setForeground(Color.BLACK);                    // Set the text colorof the loadButton  
+        textArea.setFont(new Font("Courier New", Font.PLAIN, 14)); // Set the font of the textArea
+        textArea.setBackground(new Color(0, 0, 0));   // Set the background color of the textArea
+        textArea.setForeground(new Color(255, 255, 255));   // Set the text color of the textArea
 
         add(loadButton, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
